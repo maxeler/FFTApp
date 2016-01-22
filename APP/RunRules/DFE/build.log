@@ -1,0 +1,127 @@
+Mon 08:37: ########################################## 
+Mon 08:37: Compiling.
+Mon 08:37: ########################################## 
+
+Mon 08:37: MaxCompiler version: 2015.2.
+Mon 08:37: Build DFE run rule for Fft start time: Mon Dec 14 08:37:51 GMT 2015.
+Mon 08:37: Project location: /home/nvoss/workspaceFFT/Fft.
+Mon 08:37: Detailed build log: /home/nvoss/workspaceFFT/Fft/RunRules/DFE/build.log.
+
+Mon 08:37: Compiling Engine Code.
+Mon 08:37: Building FftApp.max file. 
+Mon 08:37: Setting environment variable:
+Mon 08:37: MAXCOMPILER_BUILD_DIR : /network-scratch/nvoss/maxdc_builds/
+Mon 08:37: MAX_BUILDPARAMS : DFEModel='MAIA' target='DFE' maxFileName='FftApp' MPPRStartCT='1' MPPREndCT='4'  
+Mon 08:37: Building output:
+Mon 08:37: MaxCompiler version: 2015.2
+Mon 08:37: Build "FftApp" start time: Mon Dec 14 08:37:54 GMT 2015
+Mon 08:37: Main build process running as user nvoss on host <unknown host>
+Mon 08:37: Build location: /scratch/nvoss/maxdc_builds/14-12-15/FftApp_MAIA_DFE
+Mon 08:37: Detailed build log available in "_build.log"
+Mon 08:37: 
+Mon 08:37: ENGINE BUILD PARAMETERS
+Mon 08:37: 	        Build name: FftApp_MAIA_DFE
+Mon 08:37: 	          DFEModel: MAIA           
+Mon 08:37: 	       maxFileName: FftApp         
+Mon 08:37: 	            target: DFE            
+Mon 08:37: 	        enableMPCX: false          
+Mon 08:37: 	       MPPRStartCT: 1              
+Mon 08:37: 	         MPPREndCT: 4              
+Mon 08:37: 	       MPPRThreads: 4              
+Mon 08:37: 	MPPRRetryThreshold: 500            
+Mon 08:37: 	               tag:                
+Mon 08:37: 	     CEReplication: 6              
+Mon 08:37: 	         isBuffGce: true           
+Mon 08:37: 	 isMultiCycleReset: true           
+Mon 08:37: 	     isPhaseClocks: false          
+Mon 08:37: 	   streamFrequency: 200            
+Mon 08:37: 	      memFrequency: -1             
+Mon 08:37: 	          numPipes: 2              
+Mon 08:37: 	         dspFactor: 0.5            
+Mon 08:37: 	   hasStreamStatus: false          
+Mon 08:37: Instantiating kernel "FftKernel"
+Mon 08:37: 
+Mon 08:37: Compiling kernel "FftKernel"
+Mon 08:38: Generating input files (VHDL, netlists, MegaWizard/CoreGen)
+Mon 08:38: Running back-end  build (16 phases)
+Mon 08:38: (1/16) - Prepare MaxFile Data (GenerateMaxFileDataFile)
+Mon 08:38: (2/16) - Prepare for Placement (QuartusMap)
+Mon 09:08: (3/16) - Generate Incremental Netlist (QuartusCdb)
+Mon 09:11: (4/16) - Generate Resource Report (AlteraResourceUsageBuildPass)
+Mon 09:11: (5/16) - Generate Annotated Source Code (AlteraResourceAnnotationBuildPass)
+Mon 09:12: (6/16) - Analyse Resource Usage (AlteraResourceCounterPass)
+Mon 09:12: 
+Mon 09:12: About to start chip vendor Map/Place/Route toolflow. This will take some time.
+Mon 09:12: For this compile, we estimate this process may take up to 1 hour.
+Mon 09:12: We recommend running in simulation to verify correctness before building hardware.
+Mon 09:12: 
+Mon 09:12: PRELIMINARY RESOURCE USAGE
+Mon 09:12: Logic utilization:     106438 / 262400   (40.56%)
+Mon 09:12: Multipliers (18x18):      188 / 3926     (4.79%)
+Mon 09:12: Block memory (bits): 35174863 / 52572160 (66.91%)
+Mon 09:12: 
+Mon 09:12: (7/16) - Place and Route DFE (AlteraMPPR)
+Mon 09:12: Executing MPPR with 4 cost tables and 4 threads.
+Mon 09:12: MPPR: Starting 4 cost tables
+Mon 10:37: MPPR: Cost table 3 met timing with score 0 (best score 0)
+Mon 10:37: (8/16) - Generate Configuration (QuartusAsm)
+Mon 10:42: (9/16) - Convert Programming File (QuartusCpf)
+Mon 10:43: (10/16) - Update Checksum (UpdateChecksumBuildPass)
+Mon 10:43: (11/16) - Generate Incremental Netlist (QuartusCdb)
+Mon 10:44: (12/16) - Generate Configuration (QuartusAsm)
+Mon 10:48: (13/16) - Convert Programming File (QuartusCpf)
+Mon 10:49: (14/16) - Generate Resource Report (AlteraResourceUsageBuildPass)
+Mon 10:49: (15/16) - Generate Annotated Source Code (AlteraResourceAnnotationBuildPass)
+Mon 10:50: (16/16) - Generate MaxFile (GenerateMaxFileAltera)
+Mon 10:50: 
+Mon 10:50: FINAL RESOURCE USAGE
+Mon 10:50: Logic utilization:    99915 / 262400 (38.08%)
+Mon 10:50:   Primary FFs:       182158 / 524800 (34.71%)
+Mon 10:50:   Secondary FFs:       9219 / 524800 (1.76%)
+Mon 10:50: Multipliers (18x18):    188 / 3926   (4.79%)
+Mon 10:50:   DSP blocks:            94 / 1963   (4.79%)
+Mon 10:50: Block memory (M20K):   2567 / 2567   (100.00%)
+Mon 10:50: 
+Mon 10:50: MaxFile: /scratch/nvoss/maxdc_builds/14-12-15/FftApp_MAIA_DFE/results/FftApp.max (MD5Sum: af98b5d48ee6e0f197d99f4d559e2414)
+Mon 10:50: Build completed: Mon Dec 14 10:50:10 GMT 2015 (took 2 hours, 12 mins, 15 secs)
+Mon 10:50: Executing command:
+Mon 10:50: cp /home/nvoss/workspaceFFT/Fft/RunRules/DFE/maxfiles/FftApp.h /home/nvoss/workspaceFFT/Fft/RunRules/DFE/include/FftApp.h 
+Mon 10:50: Command output:
+Mon 10:50: Building: FftApp.max file finished.
+Mon 10:50: Engine build finished.
+Mon 10:50: Compiling CPU Code.
+Mon 10:50: Run CPU project make files updating
+Mon 10:50: Executing command:
+Mon 10:50: java -jar /network-raid/opt/maxcompiler-2015.2/lib/MaxIDE/projectAdmin.jar -u /home/nvoss/workspaceFFT/Fft DFE 
+Mon 10:50: Command output:
+
+Mon 10:50: MaxCompiler Project Admin Tool Version 2015.2.00001
+Mon 10:50:  Copyright Maxeler Technologies 2010 - 2015. All rights reserved.
+Mon 10:50: Handler version 2
+Mon 10:50: Updating RunRule dependent Makefiles for RunRule 'DFE'
+Mon 10:50: 	Updating: DFE
+Mon 10:50: Found makefiles: 1
+Mon 10:50: 	Updated: DFE
+Mon 10:50: Run CPU make.
+Mon 10:50: make RUNRULE=DFE 
+Mon 10:50: Command output:
+Mon 10:50: make -f Makefile.rules build
+Mon 10:50: make[1]: Entering directory `/home/nvoss/workspaceFFT/Fft/CPUCode'
+Mon 10:50: set -e; rm -f ../RunRules/DFE/objects/c/FftAppCpuCode.d ;                                                             \
+Mon 10:50: 	  cc -M -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/DFE/include  -I '/network-raid/opt/maxcompiler-2015.2/include/slic'  -Wno-error FftAppCpuCode.c > ../RunRules/DFE/objects/c/FftAppCpuCode.d.$$ ;                                 \
+Mon 10:50:       sed 's,\(FftAppCpuCode\)\.o[ :]*,../RunRules/DFE/objects/c/\1.o ../RunRules/DFE/objects/c/FftAppCpuCode.d : ,g' < ../RunRules/DFE/objects/c/FftAppCpuCode.d.$$ > ../RunRules/DFE/objects/c/FftAppCpuCode.d; \
+Mon 10:50:       rm -f ../RunRules/DFE/objects/c/FftAppCpuCode.d.$$
+Mon 10:50: make[1]: Leaving directory `/home/nvoss/workspaceFFT/Fft/CPUCode'
+Mon 10:50: make[1]: Entering directory `/home/nvoss/workspaceFFT/Fft/CPUCode'
+Mon 10:50: "/network-raid/opt/maxcompiler-2015.2/bin/sliccompile" ../RunRules/DFE/maxfiles/FftApp.max ../RunRules/DFE/objects/maxfiles/slic_FftApp.o
+Mon 10:50: Processing maxfile for MAIA from '../RunRules/DFE/maxfiles/FftApp.max'.
+Mon 10:50: /network-raid/opt/maxcompiler-2015.2/lib/clang/bin/start.sh clang -fgnu89-inline -pipe -O0 -std=gnu99 -Wall -Werror -frandom-seed=foo -Wno-unused-variable -Wno-unused-function -fPIC -I /network-raid/opt/maxcompiler-2015.2/include/slic -DMAXFILE_INC="/dev/null" -DSLIC_NO_DESTRUCTORS -c /tmp/sliccompile_918230144010287518/cobject/max_8783389788836801951.c -o /tmp/sliccompile_918230144010287518/cobject/max_8783389788836801951.c.o 
+Mon 10:50: /network-raid/opt/maxcompiler-2015.2/lib/clang/bin/start.sh clang -fgnu89-inline -pipe -O0 -std=gnu99 -Wall -Werror -frandom-seed=foo -Wno-unused-variable -Wno-unused-function -fPIC -I /network-raid/opt/maxcompiler-2015.2/include/slic -DMAXFILE_INC="/home/nvoss/workspaceFFT/Fft/CPUCode/../RunRules/DFE/maxfiles/FftApp.max" -DSLIC_NO_DESTRUCTORS -c /network-raid/opt/maxcompiler-2015.2/src/slicinterface/MaxFileInit.c -o max_6605139562693435616.o 
+Mon 10:50: ld -r /tmp/sliccompile_918230144010287518/cobject/max_8783389788836801951.c.o max_6605139562693435616.o -o slic_FftApp.o 
+Mon 10:50: Copying .max file C object into '/home/nvoss/workspaceFFT/Fft/CPUCode/../RunRules/DFE/objects/maxfiles'
+Mon 10:50: cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/DFE/include  -I '/network-raid/opt/maxcompiler-2015.2/include/slic'  -c FftAppCpuCode.c -o ../RunRules/DFE/objects/c/FftAppCpuCode.o
+Mon 10:50: cc -std=gnu99 -g -O3 -Wall -Wextra -I../RunRules/DFE/include  -I '/network-raid/opt/maxcompiler-2015.2/include/slic'  -o ../RunRules/DFE/binaries/FftApp ../RunRules/DFE/objects/maxfiles/slic_FftApp.o ../RunRules/DFE/objects/c/FftAppCpuCode.o -g -O3  -L '/network-raid/opt/maxcompiler-2015.2/lib' -lslic -L '/network-raid/opt/maxeleros-2015.2/maxeleros/lib' -lmaxeleros -lpthread -lm -lrt 
+Mon 10:50: make[1]: Leaving directory `/home/nvoss/workspaceFFT/Fft/CPUCode'
+Mon 10:50: Build completed: Mon Dec 14 10:50:27 GMT 2015
+
+

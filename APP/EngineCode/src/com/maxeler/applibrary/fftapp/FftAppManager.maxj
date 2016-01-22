@@ -1,0 +1,54 @@
+package com.maxeler.applibrary.fftapp;
+
+import com.maxeler.maxcompiler.v2.managers.BuildConfig;
+import com.maxeler.maxcompiler.v2.managers.BuildConfig.Effort;
+import com.maxeler.maxcompiler.v2.managers.custom.CustomManager;
+import com.maxeler.maxcompiler.v2.managers.custom.blocks.KernelBlock;
+
+public final class FftAppManager extends CustomManager {
+
+	/**
+	 * Fft size in the first dimension. Has to be a power of 2 and at least 32.
+	 */
+	private static final int N = 32;
+	/**
+	 * Fft size in the second dimension.
+	 * If this value is set to one a 1D fft will be calculated.
+	 * Has to be a power of 2 and at least 32 or be equal to 1.
+	 */
+	private static final int M = 32;
+	/**
+	 * Fft size in the third dimension
+	 * If this value is set to one a 1 or 2D fft will be calculated.
+	 * Has to be a power of 2 and at least 32 or be equal to 1.
+	 * If M equals 1 this value has to be 1 as well.
+	 */
+	private static final int L = 1;
+
+	public FftAppManager(FftAppEngineParameters params) {
+		super(params);
+
+		this.addMaxFileConstant("N", N);
+		this.addMaxFileConstant("M", M);
+		this.addMaxFileConstant("L", L);
+	}
+
+	public static void main(String[] args) {
+		FftAppEngineParameters params = new FftAppEngineParameters(args);
+		FftAppManager manager = new FftAppManager(params);
+		FftAppKernel kernel = new FftAppKernel(manager.makeKernelParameters("FftKernel"), params, N, M, L);
+
+		KernelBlock kb = manager.addKernel(kernel);
+		kb.getInput("fftIn") <== manager.addStreamFromCPU("fftIn");
+		manager.addStreamToCPU("fftOut") <== kb.getOutput("fftOut");
+
+		BuildConfig buildConfig = manager.getBuildConfig();
+		buildConfig.setBuildEffort(Effort.HIGH);
+		buildConfig.setEnableTimingAnalysis(true);
+		buildConfig.setMPPRCostTableSearchRange(params.getMPPRStartCT(), params.getMPPREndCT());
+		buildConfig.setMPPRParallelism(params.getMPPRThreads());
+		buildConfig.setMPPRRetryNearMissesThreshold(params.getMPPRRetryThreshold());
+
+		manager.build();
+	}
+}

@@ -1,0 +1,42 @@
+#---------------------------------------------------------------------------------------------------
+# User variables
+#---------------------------------------------------------------------------------------------------
+CPPFLAGS ?=
+CFLAGS   ?= -g -O3
+CXXFLAGS ?= -g -O3
+LDFLAGS  ?= 
+LDLIBS   ?= 
+
+TARGET := 
+
+#---------------------------------------------------------------------------------------------------
+# Rules
+#---------------------------------------------------------------------------------------------------
+ifndef MAXELEROSDIR
+ERROROS="You must specify the path to the directory containing MaxelerOS in the variable MAXELEROSDIR."
+MAXELEROSDIR=$(error $(ERROROS))
+endif
+
+empty:=
+space:= $(empty) $(empty)
+MAXELEROSDIR_QUOTE:=$(subst $(space),\ ,$(MAXELEROSDIR))
+
+override CPPFLAGS := $(CPPFLAGS)
+override CFLAGS   := -std=c99 -I. -Iincludes $(CFLAGS)
+override CXXFLAGS := -I. -Iincludes $(CXXFLAGS)
+override LDFLAGS  := -L. -L$(MAXELEROSDIR_QUOTE)/lib $(LDFLAGS)
+override LDLIBS   := -lmaxeleros -lm -lpthread -ldfe $(LDLIBS)
+
+.PHONY: all clean
+
+SRCS=$(wildcard *.c) $(wildcard *.cpp)
+OBJS=$(patsubst %.cpp, %.o, $(patsubst %.c, %.o, $(SRCS)))
+
+all: $(TARGET)
+
+$(TARGET): $(OBJS)
+	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+clean:
+	$(RM) $(TARGET) $(OBJS)
+

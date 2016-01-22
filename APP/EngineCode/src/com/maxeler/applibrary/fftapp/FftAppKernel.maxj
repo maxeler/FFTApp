@@ -1,0 +1,64 @@
+package com.maxeler.applibrary.fftapp;
+
+import maxpower.fft.FourierTransform;
+import maxpower.kernel.mem.Transpose;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.kernelcompiler.KernelParameters;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.base.DFEType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEComplex;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEComplexType;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVector;
+import com.maxeler.maxcompiler.v2.kernelcompiler.types.composite.DFEVectorType;
+
+/**
+ * This Kernel can perform a 1D or 2D fft. Input sizes have to be a power of 2 and at least 32.
+ */
+public class FftAppKernel extends Kernel {
+
+	static final DFEType type = dfeFloat(8, 24);
+
+	/**
+	 * Performs a 1D, 2D or 3D depending on the arguments.
+	 * @param N Fft size in the first dimension. Has to be a power of 2 and at least 32.
+	 * @param M Fft size in the second dimension. If this value is set to zero a 1D fft will be calculated.
+	 *          Has to be a power of 2 and at least 32 or be equal to 1.
+	 * @param L Fft size in the third dimension. If this value is set to zero a 1D or 2D fft will be calculated.
+	 *          Has to be a power of 2 and at least 32 or be equal to 1.
+	 */
+	public FftAppKernel(KernelParameters parameters, FftAppEngineParameters engineParameters,
+			int N, int M, int L) {
+		super(parameters);
+
+		DFEComplexType complexType = new DFEComplexType(type);
+		DFEVectorType<DFEComplex> vectorType =
+			new DFEVectorType<DFEComplex>(complexType, FourierTransform.NUM_FFT_PIPES);
+
+		// Input
+		DFEVector<DFEComplex> in = io.input("fftIn", vectorType);
+
+		DFEVector<DFEComplex> result = FourierTransform.fft(N, in);
+		if (M > 1 && L == 1) { // 2D fft
+			// Transpose data
+			DFEVector<DFEComplex> data = Transpose.transposeElementWise(result, N, M);
+
+			// Do fft on every column
+			data = FourierTransform.fft(M, data);
+
+			result = Transpose.transposeElementWise(data, M, N);
+		} else if (M > 1 && L > 1) { // 3D fft
+			// Transpose data
+			DFEVector<DFEComplex> data = Transpose.transposeElementWise(result, N, M * L);
+
+			// Do fft on every column
+			data = FourierTransform.fft(M, data);
+
+			data = Transpose.transposeElementWise(data, M, N * L);
+
+			data = FourierTransform.fft(L, data);
+
+			result = Transpose.transposeElementWise(data, L, N * M);
+		}
+		io.output("fftOut", result.getType()) <== result;
+	}
+}
